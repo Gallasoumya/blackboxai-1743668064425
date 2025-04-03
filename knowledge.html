@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Base | RemoteSec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-white">
+                <i class="fas fa-shield-alt mr-2"></i>RemoteSec
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-white hover:text-blue-300">Dashboard</a></li>
+                    <li><a href="password.html" class="text-white hover:text-blue-300">Password Manager</a></li>
+                    <li><a href="phishing.html" class="text-white hover:text-blue-300">Phishing Detector</a></li>
+                    <li><a href="network.html" class="text-white hover:text-blue-300">Network Scan</a></li>
+                    <li><a href="knowledge.html" class="text-blue-300 font-medium">Knowledge Base</a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-white">Welcome, User</span>
+                <button class="text-white hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-white">
+                    <i class="fas fa-book mr-2"></i>Security Knowledge Base
+                </h2>
+            </div>
+
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg mb-8">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                        <i class="fas fa-lightbulb text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-medium text-white">Remote Work Security Essentials</h3>
+                        <p class="text-gray-300">Learn how to protect yourself and your company while working remotely</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-blue-600 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 h-10 w-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-key text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white">Password Security</h3>
+                    </div>
+                    <p class="text-blue-100">Create strong, unique passwords for all accounts and use a password manager to store them securely.</p>
+                </div>
+                <div class="bg-purple-600 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 h-10 w-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-fish text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white">Phishing Awareness</h3>
+                    </div>
+                    <p class="text-purple-100">Learn to identify suspicious emails and messages that try to steal your credentials.</p>
+                </div>
+                <div class="bg-green-600 rounded-xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0 h-10 w-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-network-wired text-white"></i>
+                        </div>
+                        <h3 class="text-lg font-medium text-white">Secure Networks</h3>
+                    </div>
+                    <p class="text-green-100">Always use secure networks and VPNs when accessing company resources remotely.</p>
+                </div>
+            </div>
+
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h3 class="text-lg font-medium text-white mb-4">Security Guides</h3>
+                
+                <div class="space-y-4">
+                    <!-- Password Security Guide -->
+                    <div class="border border-gray-700 rounded-lg overflow-hidden">
+                        <button class="accordion-btn w-full flex justify-between items-center p-4 text-left bg-gray-700 hover:bg-gray-600">
+                            <h4 class="text-md font-medium text-white">
+                                <i class="fas fa-key mr-2"></i>Creating and Managing Secure Passwords
+                            </h4>
+                            <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content bg-gray-800">
+                            <div class="p-4">
+                                <p class="text-gray-300 mb-4">Strong passwords are your first line of defense against unauthorized access. Follow these best practices:</p>
+                                <ul class="list-disc pl-5 space-y-2 text-gray-300">
+                                    <li>Use at least 12 characters with a mix of uppercase, lowercase, numbers and symbols</li>
+                                    <li>Avoid common words, phrases, or personal information</li>
+                                    <li>Never reuse passwords across different accounts</li>
+                                    <li>Change passwords immediately if a service reports a breach</li>
+                                    <li>Consider using passphrases (e.g., "CorrectHorseBatteryStaple")</li>
+                                </ul>
+                                <div class="mt-4 p-4 bg-gray-700 rounded-lg">
+                                    <h5 class="text-sm font-medium text-white mb-2">Example Strong Password:</h5>
+                                    <code class="text-green-400">T3a#4mK!9zXq@1</code>
+                                    <p class="text-xs text-gray-400 mt-1">Estimated crack time: 34,000 years</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phishing Guide -->
+                    <div class="border border-gray-700 rounded-lg overflow-hidden">
+                        <button class="accordion-btn w-full flex justify-between items-center p-4 text-left bg-gray-700 hover:bg-gray-600">
+                            <h4 class="text-md font-medium text-white">
+                                <i class="fas fa-fish mr-2"></i>Identifying and Avoiding Phishing Attacks
+                            </h4>
+                            <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content bg-gray-800">
+                            <div class="p-4">
+                                <p class="text-gray-300 mb-4">Phishing is when attackers try to trick you into revealing sensitive information. Watch for these signs:</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div class="bg-red-900 bg-opacity-30 p-3 rounded-lg">
+                                        <h5 class="text-sm font-medium text-white mb-1">Suspicious Elements</h5>
+                                        <ul class="list-disc pl-5 text-xs text-gray-300">
+                                            <li>Urgent or threatening language</li>
+                                            <li>Generic greetings ("Dear Customer")</li>
+                                            <li>Misspellings and poor grammar</li>
+                                            <li>Mismatched sender addresses</li>
+                                        </ul>
+                                    </div>
+                                    <div class="bg-green-900 bg-opacity-30 p-3 rounded-lg">
+                                        <h5 class="text-sm font-medium text-white mb-1">Verification Steps</h5>
+                                        <ul class="list-disc pl-5 text-xs text-gray-300">
+                                            <li>Hover over links to see actual URL</li>
+                                            <li>Check sender's email address carefully</li>
+                                            <li>Contact the company directly</li>
+                                            <li>Look for HTTPS and padlock icon</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-gray-700 rounded-lg">
+                                    <h5 class="text-sm font-medium text-white mb-2">Example Phishing Email:</h5>
+                                    <div class="text-xs bg-black p-3 rounded font-mono text-gray-300">
+                                        <p>From: <span class="text-red-400">support@micros0ft.com</span> (notice the zero)</p>
+                                        <p>Subject: Urgent! Your account will be suspended</p>
+                                        <p>Dear User,</p>
+                                        <p>We detected unusual activity on your account. Click <a href="#" class="text-blue-400">here</a> to verify your identity immediately or your account will be closed.</p>
+                                        <p>Microsoft Support Team</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VPN Guide -->
+                    <div class="border border-gray-700 rounded-lg overflow-hidden">
+                        <button class="accordion-btn w-full flex justify-between items-center p-4 text-left bg-gray-700 hover:bg-gray-600">
+                            <h4 class="text-md font-medium text-white">
+                                <i class="fas fa-user-shield mr-2"></i>Using VPNs for Secure Remote Access
+                            </h4>
+                            <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content bg-gray-800">
+                            <div class="p-4">
+                                <p class="text-gray-300 mb-4">A Virtual Private Network (VPN) encrypts your internet connection to protect your data. Key benefits:</p>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                    <div class="bg-blue-900 bg-opacity-30 p-3 rounded-lg">
+                                        <h5 class="text-sm font-medium text-white mb-1">Public Wi-Fi Safety</h5>
+                                        <p class="text-xs text-gray-300">Encrypts traffic on coffee shop, airport, and hotel networks</p>
+                                    </div>
+                                    <div class="bg-purple-900 bg-opacity-30 p-3 rounded-lg">
+                                        <h5 class="text-sm font-medium text-white mb-1">Location Privacy</h5>
+                                        <p class="text-xs text-gray-300">Hides your real IP address and location</p>
+                                    </div>
+                                    <div class="bg-indigo-900 bg-opacity-30 p-3 rounded-lg">
+                                        <h5 class="text-sm font-medium text-white mb-1">Secure Access</h5>
+                                        <p class="text-xs text-gray-300">Safely connect to company resources from anywhere</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-gray-700 rounded-lg">
+                                    <h5 class="text-sm font-medium text-white mb-2">VPN Best Practices:</h5>
+                                    <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
+                                        <li>Always connect to VPN before accessing work resources</li>
+                                        <li>Use company-approved VPN software</li>
+                                        <li>Disconnect when not in use</li>
+                                        <li>Never use free VPN services for work</li>
+                                        <li>Report any connection issues immediately</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Device Security Guide -->
+                    <div class="border border-gray-700 rounded-lg overflow-hidden">
+                        <button class="accordion-btn w-full flex justify-between items-center p-4 text-left bg-gray-700 hover:bg-gray-600">
+                            <h4 class="text-md font-medium text-white">
+                                <i class="fas fa-laptop mr-2"></i>Securing Your Remote Work Devices
+                            </h4>
+                            <i class="fas fa-chevron-down transform transition-transform duration-300"></i>
+                        </button>
+                        <div class="accordion-content bg-gray-800">
+                            <div class="p-4">
+                                <p class="text-gray-300 mb-4">Your devices need protection whether you're working from home or traveling:</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                                    <div>
+                                        <h5 class="text-sm font-medium text-white mb-2">Essential Protections</h5>
+                                        <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
+                                            <li>Enable full-disk encryption</li>
+                                            <li>Install and update antivirus software</li>
+                                            <li>Enable firewall protection</li>
+                                            <li>Use device tracking (Find My Device)</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-sm font-medium text-white mb-2">Physical Security</h5>
+                                        <ul class="list-disc pl-5 text-sm text-gray-300 space-y-1">
+                                            <li>Never leave devices unattended in public</li>
+                                            <li>Use privacy screens in public spaces</li>
+                                            <li>Secure devices at home if you have roommates</li>
+                                            <li>Enable remote wipe capability</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-gray-700 rounded-lg">
+                                    <h5 class="text-sm font-medium text-white mb-2">Update Schedule:</h5>
+                                    <div class="overflow-x-auto">
+                                        <table class="min-w-full text-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-left py-2 px-3 text-gray-300">Item</th>
+                                                    <th class="text-left py-2 px-3 text-gray-300">Frequency</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-t border-gray-600">
+                                                    <td class="py-2 px-3 text-gray-300">Operating System</td>
+                                                    <td class="py-2 px-3 text-gray-300">As soon as updates are available</td>
+                                                </tr>
+                                                <tr class="border-t border-gray-600">
+                                                    <td class="py-2 px-3 text-gray-300">Applications</td>
+                                                    <td class="py-2 px-3 text-gray-300">Weekly</td>
+                                                </tr>
+                                                <tr class="border-t border-gray-600">
+                                                    <td class="py-2 px-3 text-gray-300">Antivirus Definitions</td>
+                                                    <td class="py-2 px-3 text-gray-300">Daily</td>
+                                                </tr>
+                                                <tr class="border-t border-gray-600">
+                                                    <td class="py-2 px-3 text-gray-300">Backups</td>
+                                                    <td class="py-2 px-3 text-gray-300">Daily for critical files</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Accordion functionality
+        document.querySelectorAll('.accordion-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i.fa-chevron-down');
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.classList.remove('rotate-180');
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.classList.add('rotate-180');
+                }
+            });
+        });
+
+        // Open first accordion by default
+        const firstAccordion = document.querySelector('.accordion-btn');
+        if (firstAccordion) {
+            firstAccordion.click();
+        }
+    </script>
+</body>
+</html>
