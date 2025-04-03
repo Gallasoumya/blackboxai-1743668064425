@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Scan | RemoteSec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+        }
+        .safe { color: #10B981; }
+        .warning { color: #F59E0B; }
+        .danger { color: #EF4444; }
+        .scan-animation {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-white">
+                <i class="fas fa-shield-alt mr-2"></i>RemoteSec
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-white hover:text-blue-300">Dashboard</a></li>
+                    <li><a href="password.html" class="text-white hover:text-blue-300">Password Manager</a></li>
+                    <li><a href="phishing.html" class="text-white hover:text-blue-300">Phishing Detector</a></li>
+                    <li><a href="network.html" class="text-blue-300 font-medium">Network Scan</a></li>
+                    <li><a href="knowledge.html" class="text-white hover:text-blue-300">Knowledge Base</a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-white">Welcome, User</span>
+                <button class="text-white hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-white">
+                    <i class="fas fa-network-wired mr-2"></i>Network Security Scan
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Network Scanner -->
+                <div class="lg:col-span-2 bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-medium text-white mb-4">Scan Your Network</h3>
+                    <div class="flex flex-col items-center justify-center py-8">
+                        <div id="networkIcon" class="h-20 w-20 bg-blue-600 rounded-full flex items-center justify-center mb-4">
+                            <i class="fas fa-wifi text-white text-3xl"></i>
+                        </div>
+                        <p class="text-gray-300 mb-6">Check your network for common security vulnerabilities that could expose your remote work setup</p>
+                        <button id="scanButton" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center">
+                            <i class="fas fa-search mr-2"></i> Start Network Scan
+                        </button>
+                    </div>
+
+                    <div id="scanResults" class="hidden mt-6">
+                        <div class="border border-gray-700 rounded-lg p-4">
+                            <div class="flex items-center mb-4">
+                                <div id="scanStatusIcon" class="flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center mr-3">
+                                    <i id="scanIcon" class="text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 id="scanStatusTitle" class="text-lg font-medium"></h4>
+                                    <p id="scanStatusSubtitle" class="text-sm text-gray-400"></p>
+                                </div>
+                            </div>
+                            <div id="scanDetails" class="mt-4">
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-700">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Check</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-gray-800 divide-y divide-gray-700" id="scanTableBody">
+                                            <!-- Results will be populated here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Network Security Tips -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-medium text-white mb-4">Network Security Tips</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="flex-shrink-0 h-8 w-8 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-key text-white"></i>
+                                </div>
+                                <h4 class="text-md font-medium text-white">Use Strong Encryption</h4>
+                            </div>
+                            <p class="text-sm text-gray-300">Always use WPA2 or WPA3 encryption on your Wi-Fi network. Avoid WEP as it's easily cracked.</p>
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="flex-shrink-0 h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-user-shield text-white"></i>
+                                </div>
+                                <h4 class="text-md font-medium text-white">Change Default Credentials</h4>
+                            </div>
+                            <p class="text-sm text-gray-300">Router admin panels often have default usernames/passwords. Change these immediately.</p>
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="flex-shrink-0 h-8 w-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-lock-open text-white"></i>
+                                </div>
+                                <h4 class="text-md font-medium text-white">Disable Remote Management</h4>
+                            </div>
+                            <p class="text-sm text-gray-300">Unless absolutely needed, disable remote management features on your router.</p>
+                        </div>
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div class="flex items-center mb-2">
+                                <div class="flex-shrink-0 h-8 w-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-plug text-white"></i>
+                                </div>
+                                <h4 class="text-md font-medium text-white">Update Firmware</h4>
+                            </div>
+                            <p class="text-sm text-gray-300">Regularly check for and install firmware updates for your router and network devices.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="text-md font-medium text-white mb-2">Your Network Info</h4>
+                        <div class="bg-gray-700 rounded-lg p-4">
+                            <div class="grid grid-cols-2 gap-4 text-sm">
+                                <div>
+                                    <p class="text-gray-400">IP Address</p>
+                                    <p id="ipAddress" class="text-white">Detecting...</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400">Connection</p>
+                                    <p id="connectionType" class="text-white">Detecting...</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400">ISP</p>
+                                    <p id="isp" class="text-white">Detecting...</p>
+                                </div>
+                                <div>
+                                    <p class="text-gray-400">Location</p>
+                                    <p id="location" class="text-white">Detecting...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VPN Recommendation -->
+            <div class="mt-8 bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h3 class="text-lg font-medium text-white mb-4">VPN Recommendation</h3>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                        <div class="h-16 w-16 bg-indigo-600 rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-secret text-white text-2xl"></i>
+                        </div>
+                    </div>
+                    <div class="flex-grow">
+                        <p class="text-gray-300 mb-4">Using a VPN encrypts all your internet traffic, protecting your data when working remotely on public or untrusted networks.</p>
+                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg">
+                            <i class="fas fa-shield-virus mr-2"></i> Get VPN Protection
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('scanButton').addEventListener('click', function() {
+            const scanButton = document.getElementById('scanButton');
+            const networkIcon = document.getElementById('networkIcon');
+            const scanResults = document.getElementById('scanResults');
+            const scanStatusIcon = document.getElementById('scanStatusIcon');
+            const scanIcon = document.getElementById('scanIcon');
+            const scanStatusTitle = document.getElementById('scanStatusTitle');
+            const scanStatusSubtitle = document.getElementById('scanStatusSubtitle');
+            const scanTableBody = document.getElementById('scanTableBody');
+            
+            // Show scanning state
+            scanButton.disabled = true;
+            scanButton.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i> Scanning...';
+            networkIcon.classList.add('scan-animation');
+            
+            // Simulate scan with timeout
+            setTimeout(() => {
+                // Generate random results
+                const checks = [
+                    {
+                        name: 'Open Ports',
+                        status: Math.random() > 0.7 ? 'danger' : (Math.random() > 0.5 ? 'warning' : 'safe'),
+                        details: Math.random() > 0.7 ? 'Multiple open ports detected' : (Math.random() > 0.5 ? 'Some ports may be vulnerable' : 'No vulnerable ports found')
+                    },
+                    {
+                        name: 'DNS Security',
+                        status: Math.random() > 0.8 ? 'danger' : (Math.random() > 0.4 ? 'warning' : 'safe'),
+                        details: Math.random() > 0.8 ? 'Using unsecured DNS servers' : (Math.random() > 0.4 ? 'DNS could be more secure' : 'DNS properly secured')
+                    },
+                    {
+                        name: 'Encryption',
+                        status: Math.random() > 0.6 ? 'safe' : 'warning',
+                        details: Math.random() > 0.6 ? 'Strong encryption detected' : 'Encryption could be stronger'
+                    },
+                    {
+                        name: 'Router Security',
+                        status: Math.random() > 0.7 ? 'danger' : (Math.random() > 0.3 ? 'warning' : 'safe'),
+                        details: Math.random() > 0.7 ? 'Default credentials detected' : (Math.random() > 0.3 ? 'Some security settings could be improved' : 'Router properly secured')
+                    },
+                    {
+                        name: 'Malware Protection',
+                        status: Math.random() > 0.6 ? 'safe' : 'warning',
+                        details: Math.random() > 0.6 ? 'No malware detected' : 'Potential malware signatures found'
+                    }
+                ];
+                
+                // Calculate overall status
+                const hasDanger = checks.some(check => check.status === 'danger');
+                const hasWarning = checks.some(check => check.status === 'warning');
+                let overallStatus, overallColor, overallIcon, overallTitle, overallSubtitle;
+                
+                if (hasDanger) {
+                    overallStatus = 'danger';
+                    overallColor = 'bg-red-500';
+                    overallIcon = 'fas fa-times-circle danger';
+                    overallTitle = 'Network Security: High Risk';
+                    overallSubtitle = 'Immediate action recommended';
+                } else if (hasWarning) {
+                    overallStatus = 'warning';
+                    overallColor = 'bg-yellow-500';
+                    overallIcon = 'fas fa-exclamation-circle warning';
+                    overallTitle = 'Network Security: Medium Risk';
+                    overallSubtitle = 'Some improvements needed';
+                } else {
+                    overallStatus = 'safe';
+                    overallColor = 'bg-green-500';
+                    overallIcon = 'fas fa-check-circle safe';
+                    overallTitle = 'Network Security: Good';
+                    overallSubtitle = 'No critical issues found';
+                }
+                
+                // Update UI with results
+                scanStatusIcon.className = `flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center mr-3 ${overallColor}`;
+                scanIcon.className = overallIcon;
+                scanStatusTitle.textContent = overallTitle;
+                scanStatusTitle.className = `text-lg font-medium ${overallStatus}`;
+                scanStatusSubtitle.textContent = overallSubtitle;
+                
+                // Populate scan results table
+                scanTableBody.innerHTML = '';
+                checks.forEach(check => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm font-medium text-white">${check.name}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${check.status === 'safe' ? 'bg-green-900 text-green-100' : check.status === 'warning' ? 'bg-yellow-900 text-yellow-100' : 'bg-red-900 text-red-100'}">
+                                ${check.status === 'safe' ? 'Secure' : check.status === 'warning' ? 'Warning' : 'Danger'}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="text-sm text-gray-300">${check.details}</div>
+                        </td>
+                    `;
+                    scanTableBody.appendChild(row);
+                });
+                
+                // Update network info (simulated)
+                document.getElementById('ipAddress').textContent = '192.168.' + Math.floor(Math.random() * 255) + '.' + Math.floor(Math.random() * 255);
+                document.getElementById('connectionType').textContent = Math.random() > 0.5 ? 'Wi-Fi' : 'Ethernet';
+                document.getElementById('isp').textContent = ['Comcast', 'Verizon', 'AT&T', 'Spectrum'][Math.floor(Math.random() * 4)];
+                document.getElementById('location').textContent = ['New York, NY', 'Chicago, IL', 'Los Angeles, CA', 'Houston, TX'][Math.floor(Math.random() * 4)];
+                
+                // Reset button and show results
+                scanButton.disabled = false;
+                scanButton.innerHTML = '<i class="fas fa-search mr-2"></i> Scan Again';
+                networkIcon.classList.remove('scan-animation');
+                scanResults.classList.remove('hidden');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
