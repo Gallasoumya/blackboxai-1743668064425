@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detector | RemoteSec</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            background-color: #1a202c;
+        }
+        .safe { color: #10B981; }
+        .warning { color: #F59E0B; }
+        .danger { color: #EF4444; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <header class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-white">
+                <i class="fas fa-shield-alt mr-2"></i>RemoteSec
+            </h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="index.html" class="text-white hover:text-blue-300">Dashboard</a></li>
+                    <li><a href="password.html" class="text-white hover:text-blue-300">Password Manager</a></li>
+                    <li><a href="phishing.html" class="text-blue-300 font-medium">Phishing Detector</a></li>
+                    <li><a href="network.html" class="text-white hover:text-blue-300">Network Scan</a></li>
+                    <li><a href="knowledge.html" class="text-white hover:text-blue-300">Knowledge Base</a></li>
+                </ul>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <span class="text-white">Welcome, User</span>
+                <button class="text-white hover:text-blue-300">
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-white">
+                    <i class="fas fa-fish mr-2"></i>Phishing Detector
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- URL Checker -->
+                <div class="lg:col-span-2 bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-medium text-white mb-4">Check Suspicious URL</h3>
+                    <form id="urlCheckForm" class="space-y-4">
+                        <div>
+                            <label for="url" class="block text-sm font-medium text-gray-300">Enter URL to check</label>
+                            <div class="mt-1 flex rounded-lg shadow-sm">
+                                <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-600 bg-gray-700 text-gray-300">
+                                    https://
+                                </span>
+                                <input type="text" id="url" name="url" required
+                                    class="flex-1 min-w-0 block w-full px-3 py-2 rounded-none border border-gray-600 bg-gray-700 text-white placeholder-gray-400 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="example.com/login">
+                                <button type="submit" class="inline-flex items-center px-4 py-2 rounded-r-lg border border-l-0 border-gray-600 bg-blue-600 text-sm font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <i class="fas fa-search mr-2"></i> Check
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div id="resultContainer" class="mt-6 hidden">
+                        <div class="border border-gray-700 rounded-lg p-4">
+                            <div class="flex items-center mb-3">
+                                <div id="resultIcon" class="flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center mr-3">
+                                    <i id="icon" class="text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h4 id="resultTitle" class="text-lg font-medium"></h4>
+                                    <p id="resultSubtitle" class="text-sm text-gray-400"></p>
+                                </div>
+                            </div>
+                            <div id="resultDetails" class="mt-4 text-sm text-gray-300 space-y-2">
+                                <!-- Details will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phishing Statistics -->
+                <div class="bg-gray-800 rounded-xl p-6 shadow-lg">
+                    <h3 class="text-lg font-medium text-white mb-4">Phishing Statistics</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>Safe URLs</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-green-500 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>Suspicious URLs</span>
+                                <span>25%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-yellow-500 h-2 rounded-full" style="width: 25%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm text-gray-300 mb-1">
+                                <span>Malicious URLs</span>
+                                <span>10%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="bg-red-500 h-2 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <h4 class="text-md font-medium text-white mb-2">Recent Threats</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-red-500">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <p class="ml-2 text-sm text-gray-300">Fake Microsoft login page targeting remote workers</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-yellow-500">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                </div>
+                                <p class="ml-2 text-sm text-gray-300">Zoom meeting invitation phishing scam</p>
+                            </li>
+                            <li class="flex items-start">
+                                <div class="flex-shrink-0 h-5 w-5 text-red-500">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <p class="ml-2 text-sm text-gray-300">Fake VPN update notification</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Common Phishing Signs -->
+            <div class="mt-8 bg-gray-800 rounded-xl p-6 shadow-lg">
+                <h3 class="text-lg font-medium text-white mb-4">Common Phishing Signs</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex-shrink-0 h-8 w-8 bg-red-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-link text-white"></i>
+                            </div>
+                            <h4 class="text-md font-medium text-white">Suspicious URLs</h4>
+                        </div>
+                        <p class="text-sm text-gray-300">Check for misspellings or strange domains that mimic legitimate sites.</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex-shrink-0 h-8 w-8 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <h4 class="text-md font-medium text-white">Urgent Requests</h4>
+                        </div>
+                        <p class="text-sm text-gray-300">Phishing often creates a false sense of urgency to bypass your caution.</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex-shrink-0 h-8 w-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-lock text-white"></i>
+                            </div>
+                            <h4 class="text-md font-medium text-white">HTTPS Check</h4>
+                        </div>
+                        <p class="text-sm text-gray-300">Legitimate sites use HTTPS, but some phishing sites now use it too.</p>
+                    </div>
+                    <div class="bg-gray-700 rounded-lg p-4">
+                        <div class="flex items-center mb-2">
+                            <div class="flex-shrink-0 h-8 w-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                                <i class="fas fa-user-edit text-white"></i>
+                            </div>
+                            <h4 class="text-md font-medium text-white">Poor Grammar</h4>
+                        </div>
+                        <p class="text-sm text-gray-300">Many phishing attempts contain spelling mistakes and bad grammar.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('urlCheckForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const url = document.getElementById('url').value;
+            const resultContainer = document.getElementById('resultContainer');
+            const resultIcon = document.getElementById('resultIcon');
+            const icon = document.getElementById('icon');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultSubtitle = document.getElementById('resultSubtitle');
+            const resultDetails = document.getElementById('resultDetails');
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                // This is a simulation - in a real app, this would call a backend service
+                const random = Math.random();
+                let status, color, iconClass, title, subtitle;
+                
+                if (random < 0.6) {
+                    status = 'safe';
+                    color = 'bg-green-500';
+                    iconClass = 'fas fa-check-circle safe';
+                    title = 'This URL appears safe';
+                    subtitle = 'No known phishing threats detected';
+                } else if (random < 0.85) {
+                    status = 'suspicious';
+                    color = 'bg-yellow-500';
+                    iconClass = 'fas fa-exclamation-circle warning';
+                    title = 'This URL is suspicious';
+                    subtitle = 'Exercise caution with this website';
+                } else {
+                    status = 'dangerous';
+                    color = 'bg-red-500';
+                    iconClass = 'fas fa-times-circle danger';
+                    title = 'This URL is dangerous';
+                    subtitle = 'This is a known phishing site';
+                }
+                
+                // Update UI with results
+                resultIcon.className = `flex-shrink-0 h-10 w-10 rounded-full flex items-center justify-center mr-3 ${color}`;
+                icon.className = iconClass;
+                resultTitle.textContent = title;
+                resultTitle.className = `text-lg font-medium ${status}`;
+                resultSubtitle.textContent = subtitle;
+                
+                // Add details based on status
+                resultDetails.innerHTML = '';
+                if (status === 'safe') {
+                    resultDetails.innerHTML = `
+                        <p><i class="fas fa-check safe mr-2"></i> Domain is registered to a legitimate company</p>
+                        <p><i class="fas fa-check safe mr-2"></i> No reports of phishing from this domain</p>
+                        <p><i class="fas fa-check safe mr-2"></i> SSL certificate is valid and properly configured</p>
+                    `;
+                } else if (status === 'suspicious') {
+                    resultDetails.innerHTML = `
+                        <p><i class="fas fa-exclamation-triangle warning mr-2"></i> Domain was registered recently</p>
+                        <p><i class="fas fa-exclamation-triangle warning mr-2"></i> Similar to known legitimate domains</p>
+                        <p><i class="fas fa-exclamation-triangle warning mr-2"></i> Limited online presence</p>
+                    `;
+                } else {
+                    resultDetails.innerHTML = `
+                        <p><i class="fas fa-skull-crossbones danger mr-2"></i> Reported in multiple phishing databases</p>
+                        <p><i class="fas fa-skull-crossbones danger mr-2"></i> Hosts fake login pages</p>
+                        <p><i class="fas fa-skull-crossbones danger mr-2"></i> Associated with malware distribution</p>
+                    `;
+                }
+                
+                resultContainer.classList.remove('hidden');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
